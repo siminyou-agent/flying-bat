@@ -24,7 +24,7 @@ Use a fresh output directory after changing the model, materials, lighting, or c
 - Preserve paper provenance so a flap can move independently of the material underneath it.
 - Assert surface-area preservation after every operation.
 - Add a Solidify modifier for construction-paper thickness and a small bevel on exposed edges.
-- Use a matte white-paper shader with fine procedural bump, three large softboxes, and a muted sage studio surface. The key light casts contact shadows; softer fill lights keep the white paper readable without flattening the folds.
+- Use a matte warm-yellow paper shader with fine procedural bump, three large softboxes, and a deep blue-gray studio surface. Darker golden cut edges and the contrasting background make layers easier to distinguish. The key light casts contact shadows; softer fill lights retain readable folds.
 - Bake the thickness into every glTF morph target so it remains visible in the browser, rather than exporting single-sided planes.
 
 The source is a kinematic reconstruction from photographs. It does not solve sheet collisions, elastic bending, paper spring-back, or self-contact. Small fold positions and the finished wing opening are visually reconstructed. The photographs remain the exact source reference.

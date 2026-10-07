@@ -8,7 +8,7 @@ A Blender-rendered, interactive paper-folding tutorial.
 
 - Guided folding steps with original reference photographs.
 - A 63-second Blender studio film, divided into 21 actions.
-- Matte white-paper material against a muted sage backdrop, actual paper thickness, folded layers, softbox lighting, and contact shadows.
+- Matte warm-yellow paper against a contrasting deep blue-gray backdrop, actual paper thickness, folded layers, softbox lighting, and contact shadows.
 - Per-action play/pause, replay, adjustable speed, and a scrubbable timeline.
 - A rotatable version of the **same Blender model**, exported as animated glTF with thickness baked into its morph targets.
 - Switch from the rendered film to the interactive model without losing your place. Drag to orbit, pinch/scroll to zoom, or choose a camera preset.

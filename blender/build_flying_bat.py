@@ -170,7 +170,7 @@ def setup_studio(output,width):
     scene.view_settings.view_transform='AgX'
     if hasattr(scene,'eevee') and hasattr(scene.eevee,'taa_render_samples'):scene.eevee.taa_render_samples=32
     bpy.ops.mesh.primitive_plane_add(size=200,location=(0,0,-.075));ground=bpy.context.object;ground.name='Warm seamless studio surface'
-    ground.data.materials.append(material('Muted sage studio backdrop',(.12,.16,.14),.93))
+    ground.data.materials.append(material('Deep blue-gray studio backdrop',(.025,.040,.065),.93))
     for name,loc,energy,size,color in [
         ('Large softbox',(-3,-2,6),650,5,(1,.92,.80)),
         ('Cool fill',(4,1,4),250,4,(.80,.88,1)),
@@ -183,8 +183,8 @@ def setup_studio(output,width):
     return scene,cam
 
 def build_animation(paper,scene,cam):
-    front=material('White folding paper',(.80,.80,.77),paper=True)
-    edge=material('White paper cut edge',(.63,.64,.61),paper=True)
+    front=material('Warm yellow folding paper',(.86,.62,.22),paper=True)
+    edge=material('Warm golden paper cut edge',(.46,.31,.08),paper=True)
     source=bpy.data.collections.new('Single sheet — folded surfaces');scene.collection.children.link(source)
     objects=[];metadata=[]
     total=len(paper.actions)

@@ -20,17 +20,17 @@ function pose(frame){
 async function load(){
   if(loading||ready)return;loading=true;
   try{
-    renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor('#a1aaa1');renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+    renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor('#30465f');renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
     renderer.domElement.setAttribute('role','img');renderer.domElement.setAttribute('aria-label','The animated Blender paper model. Drag to rotate, pinch or scroll to zoom.');renderer.domElement.tabIndex=0;host.append(renderer.domElement);
     scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(37,1,.05,50);
     scene.add(new THREE.HemisphereLight('#fff8e9','#8f9695',1.5));
     const key=new THREE.DirectionalLight('#fff2da',3);key.position.set(-3,7,4);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-4;key.shadow.camera.right=4;key.shadow.camera.top=4;key.shadow.camera.bottom=-4;key.shadow.normalBias=.004;key.shadow.bias=-.00015;scene.add(key);
     const rim=new THREE.DirectionalLight('#d3e5ff',1);rim.position.set(3,3,-4);scene.add(rim);
-    const floor=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({color:'#88998e',roughness:1}));floor.rotation.x=-Math.PI/2;floor.position.y=-.075;floor.receiveShadow=true;scene.add(floor);
+    const floor=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({color:'#2b3c53',roughness:1}));floor.rotation.x=-Math.PI/2;floor.position.y=-.075;floor.receiveShadow=true;scene.add(floor);
     controls=new OrbitControls(camera,renderer.domElement);controls.minDistance=3;controls.maxDistance=12;controls.maxPolarAngle=Math.PI*.9;controls.rotateSpeed=.7;controls.enableDamping=false;
     controls.addEventListener('change',()=>{host.dataset.camera=camera.position.toArray().map(n=>n.toFixed(3)).join(',');render();});
     controls.addEventListener('start',()=>document.querySelectorAll('button[data-camera]').forEach(b=>b.setAttribute('aria-pressed','false')));
-    const asset=await new GLTFLoader().loadAsync('media/flying_bat.glb?v=white-paper-1',e=>{if(e.total)$('three-status').textContent=`Loading Blender model · ${Math.round(e.loaded/e.total*100)}%`;});
+    const asset=await new GLTFLoader().loadAsync('media/flying_bat.glb?v=yellow-paper-1',e=>{if(e.total)$('three-status').textContent=`Loading Blender model · ${Math.round(e.loaded/e.total*100)}%`;});
     model=asset.scene;scene.add(model);let count=0;
     model.traverse(o=>{if(o.isMesh){count++;o.castShadow=true;o.receiveShadow=true;const mats=Array.isArray(o.material)?o.material:[o.material];for(const mat of mats){mat.roughness=.92;mat.metalness=0;mat.side=THREE.DoubleSide;}}});
     mixer=new THREE.AnimationMixer(model);for(const clip of asset.animations){const a=mixer.clipAction(clip);a.setLoop(THREE.LoopOnce,1);a.clampWhenFinished=true;a.play();}
