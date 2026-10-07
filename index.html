@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#172a28">
   <title>Flight School · The Flying Bat</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🦇%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=compact-nav-1">
   <script src="blender_player.js?v=yellow-paper-1" defer></script>
-  <script src="app.js?v=yellow-paper-1" defer></script>
+  <script src="app.js?v=compact-nav-1" defer></script>
   <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
   <script type="module" src="blender_view.js?v=yellow-paper-1"></script>
 </head>
@@ -33,20 +33,14 @@
           <div class="studio-links"><button id="watch-film" class="text-button">▶ Watch the whole fold · 63 sec</button><a href="media/flying_bat.blend?v=yellow-paper-1" download>Download Blender scene ↗</a></div>
           <p class="schematic-note">Modeled from a single rectangular sheet, with paper thickness, layered folds, and soft studio lighting. Fold positions are reconstructed from the photos; the model is a teaching reconstruction, not a collision simulation.</p>
         </section>
-        <figure>
-          <div class="photo-tools"><span id="photo-label">REFERENCE PHOTO</span><div id="panels" role="group" aria-label="Photo view"><button data-view="both" aria-pressed="true">Both</button><button data-view="left" aria-pressed="false">Left detail</button><button data-view="right" aria-pressed="false">Right detail</button></div></div>
-          <button id="photo" class="photo" aria-label="Enlarge reference photo"><img id="image" alt=""><span class="zoom-label">⤢ Enlarge</span></button>
-          <figcaption id="caption"></figcaption>
-        </figure>
         <div class="checkpoint"><span aria-hidden="true">✓</span><div><strong>Quick check</strong><p id="check"></p></div></div>
         <details id="help"><summary>A little extra help</summary><p id="tip"></p></details>
         <section id="celebration" hidden><span aria-hidden="true">🦇</span><h3>Cleared for takeoff!</h3><p>Your bat is ready. Try a gentle glide, adjust, and fly again.</p><button id="again">Fold another bat ↺</button></section>
-        <div class="navigation"><button id="back">← Back</button><span id="nav-count"></span><button id="next" class="primary">Let’s fold →</button></div>
       </section>
     </div>
-    <footer>Adapted from <a href="https://allfortheboys.com/folded-flying-bat/" target="_blank" rel="noopener">Folded Flying Bat by Allison Waken · All for the Boys ↗</a>.<br>Original folding design/tutorial and reference photos credited to the source. Extra folding checks and flight tips added for this guide.<span class="keyboard">Keyboard: ← / → to move between steps.</span></footer>
+    <footer>Adapted from <a href="https://allfortheboys.com/folded-flying-bat/" target="_blank" rel="noopener">Folded Flying Bat by Allison Waken · All for the Boys ↗</a>.<br>Original folding tutorial credited to the source. Extra folding checks and flight tips added for this guide.<span class="keyboard">Keyboard: ← / → to move between steps.</span></footer>
   </main>
-  <dialog id="viewer" aria-label="Enlarged reference photo"><div class="viewer-top"><p id="viewer-title"></p><button id="close-viewer" autofocus>Close ✕</button></div><p class="viewer-hint">Pinch to zoom on your phone, or scroll to inspect the full photo.</p><div class="viewer-image"><img id="large-image" alt=""></div></dialog>
+  <nav class="navigation" aria-label="Step navigation"><button id="back">← Back</button><span id="nav-count" aria-live="polite"></span><button id="next" class="primary">Let’s fold →</button></nav>
   <dialog id="film-viewer" aria-label="Complete Blender folding animation"><div class="viewer-top"><p>The whole fold · Blender studio</p><button id="close-film">Close ✕</button></div><video id="full-film" controls playsinline preload="none" poster="media/poster.png?v=yellow-paper-1"><track kind="captions" src="media/full-fold.vtt" srclang="en" label="Folding actions" default></video><p class="viewer-hint">Pause or drag the video's timeline to inspect any moment. Return to the step-by-step guide to rotate the model.</p></dialog>
   <noscript>This guide needs JavaScript for step navigation. <a href="https://allfortheboys.com/folded-flying-bat/">Open the original photo tutorial.</a></noscript>
 </body>
