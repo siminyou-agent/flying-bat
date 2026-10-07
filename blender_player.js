@@ -26,7 +26,7 @@ window.BatAnimation=(()=>{
     $('action-tabs').replaceChildren(...actions.map((a,n)=>{const b=document.createElement('button');b.textContent=actions.length>1?`${n+1} · ${a.title}`:a.title;b.setAttribute('aria-pressed',String(n===i));b.onclick=()=>selectAction(n);return b;}));
     $('next-action').hidden=actions.length<2;$('next-action').disabled=i===actions.length-1;
     $('film-status').hidden=true;
-    video.src=`media/fold-${String(active().index).padStart(2,'0')}.mp4`;video.load();
+    video.src=`media/fold-${String(active().index).padStart(2,'0')}.mp4?v=white-paper-1`;video.load();
     video.dataset.action=String(active().index);$('play-fold').textContent='▶ Play fold';announce();
   }
   function setStep(n){step=n;if(!chapters.length)return;actions=chapters.filter(a=>a.step===(step===0?10:step));selectAction(0);}
@@ -49,7 +49,7 @@ window.BatAnimation=(()=>{
   video.addEventListener('loadedmetadata',()=>{seek();video.playbackRate=Number($('film-speed').value);});
   video.addEventListener('ended',()=>{progress=1;stop();announce();});
   video.addEventListener('error',()=>{$('film-status').textContent='The film could not load. Try Rotate model, or reload the page.';$('film-status').hidden=false;});
-  $('watch-film').onclick=()=>{stop();$('full-film').preload='metadata';$('full-film').src='media/full-fold.mp4';$('full-film').load();$('film-viewer').showModal();};
+  $('watch-film').onclick=()=>{stop();$('full-film').preload='metadata';$('full-film').src='media/full-fold.mp4?v=white-paper-1';$('full-film').load();$('film-viewer').showModal();};
   $('close-film').onclick=()=>$('film-viewer').close();$('film-viewer').addEventListener('close',()=>$('full-film').pause());
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
   fetch('media/chapters.json').then(r=>{if(!r.ok)throw new Error('Chapter data unavailable');return r.json();}).then(data=>{chapters=data.actions;setStep(step);}).catch(()=>{$('animation-instruction').textContent='The animation could not load. Refresh to try again; the photo tutorial below is still available.';});

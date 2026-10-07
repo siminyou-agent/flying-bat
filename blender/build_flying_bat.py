@@ -166,24 +166,25 @@ def setup_studio(output,width):
     scene.render.image_settings.file_format='PNG';scene.render.image_settings.color_mode='RGB'
     scene.render.film_transparent=False
     scene.world.color=(.3,.3,.3);scene.world.use_nodes=True;scene.world.node_tree.nodes['Background'].inputs[0].default_value=(.75,.79,.84,1)
-    scene.world.node_tree.nodes['Background'].inputs[1].default_value=.35
+    scene.world.node_tree.nodes['Background'].inputs[1].default_value=.25
     scene.view_settings.view_transform='AgX'
     if hasattr(scene,'eevee') and hasattr(scene.eevee,'taa_render_samples'):scene.eevee.taa_render_samples=32
     bpy.ops.mesh.primitive_plane_add(size=200,location=(0,0,-.075));ground=bpy.context.object;ground.name='Warm seamless studio surface'
-    ground.data.materials.append(material('Warm ivory backdrop',(.75,.72,.65),.93))
+    ground.data.materials.append(material('Muted sage studio backdrop',(.12,.16,.14),.93))
     for name,loc,energy,size,color in [
         ('Large softbox',(-3,-2,6),650,5,(1,.92,.80)),
-        ('Cool fill',(4,1,4),500,4,(.80,.88,1)),
-        ('Edge light',(-1,4,3),600,3,(1,.97,.86))]:
+        ('Cool fill',(4,1,4),250,4,(.80,.88,1)),
+        ('Edge light',(-1,4,3),350,3,(1,.97,.86))]:
         data=bpy.data.lights.new(name,'AREA');data.energy=energy;data.shape='DISK';data.size=size;data.color=color
+        data.use_shadow=name=='Large softbox'
         light=bpy.data.objects.new(name,data);scene.collection.objects.link(light);light.location=loc;point_camera(light,(0,0,0))
     data=bpy.data.cameras.new('Studio camera');cam=bpy.data.objects.new('Studio camera',data);scene.collection.objects.link(cam)
     scene.camera=cam;cam.location=(3.4,-5.4,6.8);point_camera(cam,(0,0,.2));data.type='ORTHO';data.ortho_scale=5.0;data.lens=50
     return scene,cam
 
 def build_animation(paper,scene,cam):
-    front=material('Charcoal construction paper',(.018,.024,.033),paper=True)
-    edge=material('Paper cut edge',(.09,.10,.11),paper=True)
+    front=material('White folding paper',(.80,.80,.77),paper=True)
+    edge=material('White paper cut edge',(.63,.64,.61),paper=True)
     source=bpy.data.collections.new('Single sheet — folded surfaces');scene.collection.children.link(source)
     objects=[];metadata=[]
     total=len(paper.actions)

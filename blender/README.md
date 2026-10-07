@@ -14,6 +14,8 @@ python3 blender/encode.py --work build/flying_bat --dest media
 
 The first command produces seven preview images for visual review before committing to the full render. The second command resumes an interrupted render and reuses identical hold frames without reducing the frame rate. The final film is 960 × 720, 24 fps, 63 seconds.
 
+Use a fresh output directory after changing the model, materials, lighting, or camera. Frame resumption assumes the saved scene has not changed.
+
 ## Modeling approach
 
 - Start with a single 11:8.5 rectangle.
@@ -22,7 +24,7 @@ The first command produces seven preview images for visual review before committ
 - Preserve paper provenance so a flap can move independently of the material underneath it.
 - Assert surface-area preservation after every operation.
 - Add a Solidify modifier for construction-paper thickness and a small bevel on exposed edges.
-- Use a matte paper shader with fine procedural bump, three large softboxes, and a warm seamless studio surface.
+- Use a matte white-paper shader with fine procedural bump, three large softboxes, and a muted sage studio surface. The key light casts contact shadows; softer fill lights keep the white paper readable without flattening the folds.
 - Bake the thickness into every glTF morph target so it remains visible in the browser, rather than exporting single-sided planes.
 
 The source is a kinematic reconstruction from photographs. It does not solve sheet collisions, elastic bending, paper spring-back, or self-contact. Small fold positions and the finished wing opening are visually reconstructed. The photographs remain the exact source reference.

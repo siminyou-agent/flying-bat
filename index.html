@@ -7,10 +7,10 @@
   <title>Flight School · The Flying Bat</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🦇%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
-  <script src="blender_player.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="blender_player.js?v=white-paper-1" defer></script>
+  <script src="app.js?v=white-paper-1" defer></script>
   <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
-  <script type="module" src="blender_view.js"></script>
+  <script type="module" src="blender_view.js?v=white-paper-1"></script>
 </head>
 <body>
   <header class="topbar"><a class="brand" href="./"><span aria-hidden="true">↗</span> FLIGHT SCHOOL</a><span class="edition">PAPER LAB / NO. 01</span></header>
@@ -26,11 +26,11 @@
           <div class="animation-heading"><span class="eyebrow">THE BLENDER STUDIO</span><div class="view-mode" role="group" aria-label="Animation view"><button id="mode-film" aria-pressed="true">Film</button><button id="mode-model" aria-pressed="false">Rotate model</button></div></div>
           <div id="action-tabs" role="group" aria-label="Actions in this step"></div>
           <p id="animation-instruction" aria-live="polite"></p>
-          <div id="film-panel"><video id="fold-film" muted playsinline preload="metadata" poster="media/poster.png" aria-label="Blender-rendered folding animation"></video><span class="film-badge">RENDERED IN BLENDER</span><p id="film-status" role="status" hidden></p></div>
+          <div id="film-panel"><video id="fold-film" muted playsinline preload="metadata" poster="media/poster.png?v=white-paper-1" aria-label="Blender-rendered white-paper folding animation"></video><span class="film-badge">RENDERED IN BLENDER · WHITE PAPER</span><p id="film-status" role="status" hidden></p></div>
           <div id="three-panel" hidden><div class="camera-presets" role="group" aria-label="Camera angle"><button data-camera="angle" aria-pressed="true">↗ Angled</button><button data-camera="top" aria-pressed="false">Top</button><button data-camera="side" aria-pressed="false">Side</button><button data-camera="back" aria-pressed="false">Back</button><button id="reset-camera" aria-label="Reset 3D camera">↺ View</button></div><div id="three-viewport"><p id="three-status" role="status">Loading the Blender model…</p></div><div class="orbit-help">Drag to rotate · Pinch or scroll to zoom · Same model, same fold</div></div>
           <div class="animation-controls"><button id="play-fold" class="primary">▶ Play fold</button><div class="scrub"><label for="fold-progress">Fold progress <output id="fold-percent" for="fold-progress">0%</output></label><input id="fold-progress" type="range" min="0" max="1000" value="0" aria-label="Fold progress"></div><button id="replay-fold" aria-label="Reset animation">↺</button></div>
           <div class="animation-bottom"><label class="speed-control">Speed <select id="film-speed" aria-label="Playback speed"><option value="0.5">½× Slow</option><option value="0.75" selected>¾× Gentle</option><option value="1">1×</option></select></label><button id="next-action" class="text-button">Next action →</button></div>
-          <div class="studio-links"><button id="watch-film" class="text-button">▶ Watch the whole fold · 63 sec</button><a href="media/flying_bat.blend" download>Download Blender scene ↗</a></div>
+          <div class="studio-links"><button id="watch-film" class="text-button">▶ Watch the whole fold · 63 sec</button><a href="media/flying_bat.blend?v=white-paper-1" download>Download Blender scene ↗</a></div>
           <p class="schematic-note">Modeled from a single rectangular sheet, with paper thickness, layered folds, and soft studio lighting. Fold positions are reconstructed from the photos; the model is a teaching reconstruction, not a collision simulation.</p>
         </section>
         <figure>
@@ -47,7 +47,7 @@
     <footer>Adapted from <a href="https://allfortheboys.com/folded-flying-bat/" target="_blank" rel="noopener">Folded Flying Bat by Allison Waken · All for the Boys ↗</a>.<br>Original folding design/tutorial and reference photos credited to the source. Extra folding checks and flight tips added for this guide.<span class="keyboard">Keyboard: ← / → to move between steps.</span></footer>
   </main>
   <dialog id="viewer" aria-label="Enlarged reference photo"><div class="viewer-top"><p id="viewer-title"></p><button id="close-viewer" autofocus>Close ✕</button></div><p class="viewer-hint">Pinch to zoom on your phone, or scroll to inspect the full photo.</p><div class="viewer-image"><img id="large-image" alt=""></div></dialog>
-  <dialog id="film-viewer" aria-label="Complete Blender folding animation"><div class="viewer-top"><p>The whole fold · Blender studio</p><button id="close-film">Close ✕</button></div><video id="full-film" controls playsinline preload="none" poster="media/poster.png"><track kind="captions" src="media/full-fold.vtt" srclang="en" label="Folding actions" default></video><p class="viewer-hint">Pause or drag the video's timeline to inspect any moment. Return to the step-by-step guide to rotate the model.</p></dialog>
+  <dialog id="film-viewer" aria-label="Complete Blender folding animation"><div class="viewer-top"><p>The whole fold · Blender studio</p><button id="close-film">Close ✕</button></div><video id="full-film" controls playsinline preload="none" poster="media/poster.png?v=white-paper-1"><track kind="captions" src="media/full-fold.vtt" srclang="en" label="Folding actions" default></video><p class="viewer-hint">Pause or drag the video's timeline to inspect any moment. Return to the step-by-step guide to rotate the model.</p></dialog>
   <noscript>This guide needs JavaScript for step navigation. <a href="https://allfortheboys.com/folded-flying-bat/">Open the original photo tutorial.</a></noscript>
 </body>
 </html>
