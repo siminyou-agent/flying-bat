@@ -4,6 +4,7 @@ window.BatAnimation=(()=>{
   let chapters=[],step=0,actions=[],index=0,progress=0,mode='film',playing=false,raf=0,last=0;
   const active=()=>actions[index];
   const duration=()=>active()?active().end-active().start:3;
+  const clipSource=(whole=false)=>`media/${whole?'full-fold':'fold'}${window.BatGuides.enabled?'-guided':''}${whole?'':'-'+String(active().index).padStart(2,'0')}.mp4?v=crease-guides-1`;
   function announce(){
     if(!active())return;
     const time=active().start+Math.min(duration()-1/24,progress*duration());
@@ -26,7 +27,7 @@ window.BatAnimation=(()=>{
     $('action-tabs').replaceChildren(...actions.map((a,n)=>{const b=document.createElement('button');b.textContent=actions.length>1?`${n+1} · ${a.title}`:a.title;b.setAttribute('aria-pressed',String(n===i));b.onclick=()=>selectAction(n);return b;}));
     $('next-action').hidden=actions.length<2;$('next-action').disabled=i===actions.length-1;
     $('film-status').hidden=true;
-    video.src=`media/fold-${String(active().index).padStart(2,'0')}.mp4?v=yellow-paper-1`;video.load();
+    video.src=clipSource();video.load();
     video.dataset.action=String(active().index);$('play-fold').textContent='▶ Play fold';announce();
   }
   function setStep(n){step=n;if(!chapters.length)return;actions=chapters.filter(a=>a.step===(step===0?10:step));selectAction(0);}
@@ -45,13 +46,14 @@ window.BatAnimation=(()=>{
   $('replay-fold').onclick=()=>{progress=0;stop();seek();};
   $('fold-progress').addEventListener('input',e=>{stop();progress=Number(e.target.value)/1000;seek();});
   $('film-speed').onchange=()=>{video.playbackRate=Number($('film-speed').value);};
+  $('guides-toggle').onchange=()=>{stop();window.BatGuides.setEnabled($('guides-toggle').checked);if(active()){video.src=clipSource();video.load();announce();}};
   $('next-action').onclick=()=>{if(index+1<actions.length)selectAction(index+1);};
   video.addEventListener('loadedmetadata',()=>{seek();video.playbackRate=Number($('film-speed').value);});
   video.addEventListener('ended',()=>{progress=1;stop();announce();});
   video.addEventListener('error',()=>{$('film-status').textContent='The film could not load. Try Rotate model, or reload the page.';$('film-status').hidden=false;});
-  $('watch-film').onclick=()=>{stop();$('full-film').preload='metadata';$('full-film').src='media/full-fold.mp4?v=yellow-paper-1';$('full-film').load();$('film-viewer').showModal();};
+  $('watch-film').onclick=()=>{stop();$('full-film').preload='metadata';$('full-film').src=clipSource(true);$('full-film').load();$('film-viewer').showModal();};
   $('close-film').onclick=()=>$('film-viewer').close();$('film-viewer').addEventListener('close',()=>$('full-film').pause());
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
-  fetch('media/chapters.json').then(r=>{if(!r.ok)throw new Error('Chapter data unavailable');return r.json();}).then(data=>{chapters=data.actions;setStep(step);}).catch(()=>{$('animation-instruction').textContent='The animation could not load. Refresh to try again; the photo tutorial below is still available.';});
+  fetch('media/chapters.json').then(r=>{if(!r.ok)throw new Error('Chapter data unavailable');return r.json();}).then(data=>{chapters=data.actions;setStep(step);}).catch(()=>{$('animation-instruction').textContent='The animation could not load. Refresh to try again; the written folding steps are still available.';});
   return {setStep};
 })();

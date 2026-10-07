@@ -6,11 +6,12 @@
   <meta name="theme-color" content="#172a28">
   <title>Flight School · The Flying Bat</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🦇%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="style.css?v=compact-nav-1">
-  <script src="blender_player.js?v=yellow-paper-1" defer></script>
+  <link rel="stylesheet" href="style.css?v=crease-guides-1">
+  <script src="fold_guides.js?v=crease-guides-1" defer></script>
+  <script src="blender_player.js?v=crease-guides-1" defer></script>
   <script src="app.js?v=compact-nav-1" defer></script>
   <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
-  <script type="module" src="blender_view.js?v=yellow-paper-1"></script>
+  <script type="module" src="blender_view.js?v=crease-guides-1"></script>
 </head>
 <body>
   <header class="topbar"><a class="brand" href="./"><span aria-hidden="true">↗</span> FLIGHT SCHOOL</a><span class="edition">PAPER LAB / NO. 01</span></header>
@@ -27,9 +28,9 @@
           <div id="action-tabs" role="group" aria-label="Actions in this step"></div>
           <p id="animation-instruction" aria-live="polite"></p>
           <div id="film-panel"><video id="fold-film" muted playsinline preload="metadata" poster="media/poster.png?v=yellow-paper-1" aria-label="Blender-rendered warm-yellow paper folding animation"></video><span class="film-badge">RENDERED IN BLENDER · WARM YELLOW</span><p id="film-status" role="status" hidden></p></div>
-          <div id="three-panel" hidden><div class="camera-presets" role="group" aria-label="Camera angle"><button data-camera="angle" aria-pressed="true">↗ Angled</button><button data-camera="top" aria-pressed="false">Top</button><button data-camera="side" aria-pressed="false">Side</button><button data-camera="back" aria-pressed="false">Back</button><button id="reset-camera" aria-label="Reset 3D camera">↺ View</button></div><div id="three-viewport"><p id="three-status" role="status">Loading the Blender model…</p></div><div class="orbit-help">Drag to rotate · Pinch or scroll to zoom · Same model, same fold</div></div>
+          <div id="three-panel" hidden><div class="camera-presets" role="group" aria-label="Camera angle"><button data-camera="angle" aria-pressed="true">↗ Angled</button><button data-camera="top" aria-pressed="false">Top</button><button data-camera="side" aria-pressed="false">Side</button><button data-camera="back" aria-pressed="false">Back</button><button id="reset-camera" aria-label="Reset 3D camera">↺ View</button></div><div id="three-viewport"><p id="three-status" role="status">Loading the Blender model…</p><svg id="model-guides" aria-hidden="true"></svg></div><div class="orbit-help">Drag to rotate · Pinch or scroll to zoom · Same model, same fold</div></div>
           <div class="animation-controls"><button id="play-fold" class="primary">▶ Play fold</button><div class="scrub"><label for="fold-progress">Fold progress <output id="fold-percent" for="fold-progress">0%</output></label><input id="fold-progress" type="range" min="0" max="1000" value="0" aria-label="Fold progress"></div><button id="replay-fold" aria-label="Reset animation">↺</button></div>
-          <div class="animation-bottom"><label class="speed-control">Speed <select id="film-speed" aria-label="Playback speed"><option value="0.5">½× Slow</option><option value="0.75" selected>¾× Gentle</option><option value="1">1×</option></select></label><button id="next-action" class="text-button">Next action →</button></div>
+          <div class="animation-bottom"><label class="speed-control">Speed <select id="film-speed" aria-label="Playback speed"><option value="0.5">½× Slow</option><option value="0.75" selected>¾× Gentle</option><option value="1">1×</option></select></label><label class="guide-toggle" title="Red dashes mark the crease. Blue arrows show the folding direction."><input id="guides-toggle" type="checkbox" checked> Fold lines</label><button id="next-action" class="text-button">Next action →</button></div>
           <div class="studio-links"><button id="watch-film" class="text-button">▶ Watch the whole fold · 63 sec</button><a href="media/flying_bat.blend?v=yellow-paper-1" download>Download Blender scene ↗</a></div>
           <p class="schematic-note">Modeled from a single rectangular sheet, with paper thickness, layered folds, and soft studio lighting. Fold positions are reconstructed from the photos; the model is a teaching reconstruction, not a collision simulation.</p>
         </section>

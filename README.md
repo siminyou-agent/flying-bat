@@ -10,6 +10,7 @@ A Blender-rendered, interactive paper-folding tutorial.
 - A 63-second Blender studio film, divided into 21 actions.
 - Matte warm-yellow paper against a contrasting deep blue-gray backdrop, actual paper thickness, folded layers, softbox lighting, and contact shadows.
 - Per-action play/pause, replay, adjustable speed, and a scrubbable timeline.
+- High-contrast red dashed crease lines and blue direction arrows, enabled by default. Turn **Fold lines** off for the clean film/model view. Turn-over actions are labeled separately and do not show a false crease.
 - A rotatable version of the **same Blender model**, exported as animated glTF with thickness baked into its morph targets.
 - Switch from the rendered film to the interactive model without losing your place. Drag to orbit, pinch/scroll to zoom, or choose a camera preset.
 - Downloadable `.blend` source scene, plus procedural modeling and rendering scripts.
@@ -18,6 +19,8 @@ A Blender-rendered, interactive paper-folding tutorial.
 - Responsive phone and desktop layouts; keyboard navigation.
 
 The model begins with one rectangular sheet. Crease operations subdivide its faces and rotate the selected paper layers, retaining original-sheet coordinates. The generator verifies that every fold preserves the sheet's surface area. Small folds are reconstructed from reference photographs, so this is a teaching reconstruction rather than an exact measured pattern or a collision/elasticity simulation. Refer to the photographs for precise fold placement.
+
+Guide positions are exported from the model's actual hinge axes and animated camera. They are composited into the guided videos (including the full film and fullscreen playback), and projected as screen-size annotations over the rotatable model. They are instructional overlays, not ink or additional geometry in the downloadable clean Blender scene.
 
 ## Run locally
 

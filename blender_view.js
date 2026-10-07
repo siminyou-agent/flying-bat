@@ -5,7 +5,7 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 const $=id=>document.getElementById(id),host=$('three-viewport');
 let loading=false,ready=false,visible=false,renderer,scene,camera,controls,mixer,model;
 const views={angle:[3.4,5.3,5.4],top:[0,7,.01],side:[6,1.8,0],back:[0,3.5,-6]};
-function render(){if(ready&&visible)renderer.render(scene,camera);}
+function render(){if(ready&&visible){renderer.render(scene,camera);window.BatGuides.draw($('model-guides'),window.batModelFrame,point=>{const p=new THREE.Vector3(...point).project(camera);return p.z>=-1&&p.z<=1?[(p.x+1)*host.clientWidth/2,(1-p.y)*host.clientHeight/2]:null;},host.clientWidth,host.clientHeight);}}
 function resize(){if(!ready||!host.clientWidth)return;renderer.setSize(host.clientWidth,host.clientHeight,false);camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();render();}
 function cameraView(name){camera.position.set(...views[name]);controls.target.set(0,.25,.3);controls.update();document.querySelectorAll('button[data-camera]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.camera===name)));render();}
 function pose(frame){
@@ -30,7 +30,7 @@ async function load(){
     controls=new OrbitControls(camera,renderer.domElement);controls.minDistance=3;controls.maxDistance=12;controls.maxPolarAngle=Math.PI*.9;controls.rotateSpeed=.7;controls.enableDamping=false;
     controls.addEventListener('change',()=>{host.dataset.camera=camera.position.toArray().map(n=>n.toFixed(3)).join(',');render();});
     controls.addEventListener('start',()=>document.querySelectorAll('button[data-camera]').forEach(b=>b.setAttribute('aria-pressed','false')));
-    const asset=await new GLTFLoader().loadAsync('media/flying_bat.glb?v=yellow-paper-1',e=>{if(e.total)$('three-status').textContent=`Loading Blender model · ${Math.round(e.loaded/e.total*100)}%`;});
+    const [asset]=await Promise.all([new GLTFLoader().loadAsync('media/flying_bat.glb?v=yellow-paper-1',e=>{if(e.total)$('three-status').textContent=`Loading Blender model · ${Math.round(e.loaded/e.total*100)}%`;}),window.BatGuides.load()]);
     model=asset.scene;scene.add(model);let count=0;
     model.traverse(o=>{if(o.isMesh){count++;o.castShadow=true;o.receiveShadow=true;const mats=Array.isArray(o.material)?o.material:[o.material];for(const mat of mats){mat.roughness=.92;mat.metalness=0;mat.side=THREE.DoubleSide;}}});
     mixer=new THREE.AnimationMixer(model);for(const clip of asset.animations){const a=mixer.clipAction(clip);a.setLoop(THREE.LoopOnce,1);a.clampWhenFinished=true;a.play();}
@@ -43,3 +43,4 @@ async function load(){
 }
 window.addEventListener('bat-model-view',e=>{visible=e.detail.visible;if(visible){load();resize();pose(window.batModelFrame);}});
 window.addEventListener('bat-model-frame',e=>pose(e.detail));
+window.addEventListener('bat-guides-change',render);

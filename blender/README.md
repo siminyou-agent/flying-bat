@@ -10,9 +10,13 @@ Run from the repository root with `blender`, `python3`, and `ffmpeg` available:
 blender -b --python blender/build_flying_bat.py -- --output build/flying_bat --width 960 --preview --export
 blender -b build/flying_bat/flying_bat.blend --python blender/render_frames.py -- --work build/flying_bat
 python3 blender/encode.py --work build/flying_bat --dest media
+blender -b build/flying_bat/flying_bat.blend --python blender/export_guides.py -- --out media/fold-guides.json
+python3 blender/annotate_guides.py --frames build/flying_bat/frames --guides media/fold-guides.json --work build/flying_bat/guided --dest media
 ```
 
 The first command produces seven preview images for visual review before committing to the full render. The second command resumes an interrupted render and reuses identical hold frames without reducing the frame rate. The final film is 960 × 720, 24 fps, 63 seconds.
+
+The guide compositor also requires Pillow in your Python environment. It produces separate `fold-guided-*.mp4` clips and `full-fold-guided.mp4`, retaining the clean versions for the **Fold lines** toggle. The exported crease axes are clipped to the actual moving paper packet. Direction arcs follow that packet's hinge rotation, and film placement uses the saved Blender camera for every frame.
 
 Use a fresh output directory after changing the model, materials, lighting, or camera. Frame resumption assumes the saved scene has not changed.
 
@@ -34,6 +38,8 @@ The source is a kinematic reconstruction from photographs. It does not solve she
 - `build_flying_bat.py`: geometric model, animation keyframes, studio scene, preview renderer, and thick-mesh glTF export.
 - `render_frames.py`: resumable frame renderer.
 - `encode.py`: H.264 clips, full film, captions, and downloadable model packaging.
+- `export_guides.py`: per-frame 3D crease/direction coordinates and matching film projections.
+- `annotate_guides.py`: high-contrast red/blue guide compositing and guided video encoding.
 - `../media/flying_bat.blend`: editable Blender scene.
 - `../media/flying_bat.glb`: the animated model used by the interactive viewer.
 - `../media/chapters.json`: synchronized timeline for the film and model.
