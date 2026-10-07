@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172a28">
+  <title>Flight School · The Flying Bat</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🦇%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="animation.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./"><span aria-hidden="true">↗</span> FLIGHT SCHOOL</a><span class="edition">PAPER LAB / NO. 01</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">ONE SHEET. A LITTLE FOLDING. LIFTOFF.</p><h1>The flying bat<span>.</span></h1><p class="subtitle">Turn a rectangle of paper into your own little night flyer.</p></div><div class="materials"><span>◷ About 10–15 min</span><span>▱ One sheet of paper</span><span>✂ No cutting or glue</span></div></section>
+    <div class="workspace">
+      <aside><div class="rail-heading">YOUR FLIGHT PLAN <span id="count"></span></div><nav id="steps" aria-label="Tutorial steps"></nav><button id="restart" class="text-button">↺ Start over</button><p class="saved" id="save-status">Progress saved on this device.</p></aside>
+      <section class="lesson" aria-label="Folding tutorial">
+        <div class="progress-track"><div id="progress"></div></div>
+        <div class="lesson-top"><span id="phase" class="eyebrow"></span><button id="speak" class="text-button" aria-label="Read this step aloud">♪ Read aloud</button></div>
+        <div class="step-heading" aria-live="polite" aria-atomic="true"><p id="number" class="step-number"></p><h2 id="title"></h2><p id="instruction"></p></div>
+        <section class="animation-lab" aria-label="Interactive folding animation">
+          <div class="animation-heading"><span class="eyebrow">FOLD EXPLORER</span><span class="schematic-label">Simplified folding diagram</span></div>
+          <div id="action-tabs" role="group" aria-label="Actions in this step"></div>
+          <p id="animation-instruction" aria-live="polite"></p>
+          <div class="diagram-wrap"><svg id="fold-diagram" viewBox="0 0 600 430" role="img" aria-labelledby="diagram-title diagram-desc"><title id="diagram-title">Interactive paper fold</title><desc id="diagram-desc">Colored paper layers demonstrate the selected folding action. Drag the progress slider to inspect the fold.</desc><defs><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#cfdbce"/></pattern><filter id="paper-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#1b3929" flood-opacity=".14"/></filter><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#b86d32" stroke-width="1.5"/></marker></defs><rect width="600" height="430" fill="url(#grid)"/><ellipse cx="300" cy="385" rx="150" ry="13" fill="#173e2b" opacity=".05"/><g id="paper-scene" filter="url(#paper-shadow)"></g><g id="fold-guides"></g></svg><span class="diagram-hint">Drag the slider to fold it yourself ↓</span></div>
+          <div class="animation-controls"><button id="play-fold" class="primary">▶ Play fold</button><div class="scrub"><label for="fold-progress">Fold progress <output id="fold-percent" for="fold-progress">0%</output></label><input id="fold-progress" type="range" min="0" max="1000" value="0" aria-label="Fold progress"></div><button id="replay-fold" aria-label="Reset animation">↺</button></div>
+          <div class="animation-bottom"><span><i class="legend-paper"></i> Paper <i class="legend-moving"></i> Moving flap <i class="legend-crease"></i> Crease</span><button id="next-action" class="text-button">Next action →</button></div>
+          <p class="schematic-note">Use this diagram to understand the motion; match exact positions and proportions to the original photos below.</p>
+        </section>
+        <figure>
+          <div class="photo-tools"><span id="photo-label">REFERENCE PHOTO</span><div id="panels" role="group" aria-label="Photo view"><button data-view="both" aria-pressed="true">Both</button><button data-view="left" aria-pressed="false">Left detail</button><button data-view="right" aria-pressed="false">Right detail</button></div></div>
+          <button id="photo" class="photo" aria-label="Enlarge reference photo"><img id="image" alt=""><span class="zoom-label">⤢ Enlarge</span></button>
+          <figcaption id="caption"></figcaption>
+        </figure>
+        <div class="checkpoint"><span aria-hidden="true">✓</span><div><strong>Quick check</strong><p id="check"></p></div></div>
+        <details id="help"><summary>A little extra help</summary><p id="tip"></p></details>
+        <section id="celebration" hidden><span aria-hidden="true">🦇</span><h3>Cleared for takeoff!</h3><p>Your bat is ready. Try a gentle glide, adjust, and fly again.</p><button id="again">Fold another bat ↺</button></section>
+        <div class="navigation"><button id="back">← Back</button><span id="nav-count"></span><button id="next" class="primary">Let’s fold →</button></div>
+      </section>
+    </div>
+    <footer>Adapted from <a href="https://allfortheboys.com/folded-flying-bat/" target="_blank" rel="noopener">Folded Flying Bat by Allison Waken · All for the Boys ↗</a>.<br>Original folding design/tutorial and reference photos credited to the source. Extra folding checks and flight tips added for this guide.<span class="keyboard">Keyboard: ← / → to move between steps.</span></footer>
+  </main>
+  <dialog id="viewer" aria-label="Enlarged reference photo"><div class="viewer-top"><p id="viewer-title"></p><button id="close-viewer" autofocus>Close ✕</button></div><p class="viewer-hint">Pinch to zoom on your phone, or scroll to inspect the full photo.</p><div class="viewer-image"><img id="large-image" alt=""></div></dialog>
+  <noscript>This guide needs JavaScript for step navigation. <a href="https://allfortheboys.com/folded-flying-bat/">Open the original photo tutorial.</a></noscript>
+</body>
+</html>
