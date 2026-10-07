@@ -1,0 +1,216 @@
+{
+  "fps": 24,
+  "frames": 1512,
+  "actions": [
+    {
+      "index": 0,
+      "step": 0,
+      "title": "One rectangle of construction paper",
+      "start_frame": 1,
+      "end_frame": 72,
+      "start": 0.0,
+      "end": 3.0,
+      "faces": 1
+    },
+    {
+      "index": 1,
+      "step": 1,
+      "title": "Make the center crease",
+      "start_frame": 73,
+      "end_frame": 144,
+      "start": 3.0,
+      "end": 6.0,
+      "faces": 2
+    },
+    {
+      "index": 2,
+      "step": 1,
+      "title": "Open the sheet again",
+      "start_frame": 145,
+      "end_frame": 216,
+      "start": 6.0,
+      "end": 9.0,
+      "faces": 2
+    },
+    {
+      "index": 3,
+      "step": 2,
+      "title": "Left edge to the center",
+      "start_frame": 217,
+      "end_frame": 288,
+      "start": 9.0,
+      "end": 12.0,
+      "faces": 3
+    },
+    {
+      "index": 4,
+      "step": 2,
+      "title": "Right edge to the center",
+      "start_frame": 289,
+      "end_frame": 360,
+      "start": 12.0,
+      "end": 15.0,
+      "faces": 4
+    },
+    {
+      "index": 5,
+      "step": 3,
+      "title": "Fan the right flap outward",
+      "start_frame": 361,
+      "end_frame": 432,
+      "start": 15.0,
+      "end": 18.0,
+      "faces": 5
+    },
+    {
+      "index": 6,
+      "step": 3,
+      "title": "Fan the left flap outward",
+      "start_frame": 433,
+      "end_frame": 504,
+      "start": 18.0,
+      "end": 21.0,
+      "faces": 6
+    },
+    {
+      "index": 7,
+      "step": 4,
+      "title": "Fold the upper-right corner",
+      "start_frame": 505,
+      "end_frame": 576,
+      "start": 21.0,
+      "end": 24.0,
+      "faces": 8
+    },
+    {
+      "index": 8,
+      "step": 4,
+      "title": "Fold the upper-left corner",
+      "start_frame": 577,
+      "end_frame": 648,
+      "start": 24.0,
+      "end": 27.0,
+      "faces": 10
+    },
+    {
+      "index": 9,
+      "step": 5,
+      "title": "Turn the paper over",
+      "start_frame": 649,
+      "end_frame": 720,
+      "start": 27.0,
+      "end": 30.0,
+      "faces": 10
+    },
+    {
+      "index": 10,
+      "step": 5,
+      "title": "Bring the top point to the bottom",
+      "start_frame": 721,
+      "end_frame": 792,
+      "start": 30.0,
+      "end": 33.0,
+      "faces": 16
+    },
+    {
+      "index": 11,
+      "step": 6,
+      "title": "Fold the small right shoulder",
+      "start_frame": 793,
+      "end_frame": 864,
+      "start": 33.0,
+      "end": 36.0,
+      "faces": 22
+    },
+    {
+      "index": 12,
+      "step": 6,
+      "title": "Fold the small left shoulder",
+      "start_frame": 865,
+      "end_frame": 936,
+      "start": 36.0,
+      "end": 39.0,
+      "faces": 28
+    },
+    {
+      "index": 13,
+      "step": 7,
+      "title": "Lift the point over the small corners",
+      "start_frame": 937,
+      "end_frame": 1008,
+      "start": 39.0,
+      "end": 42.0,
+      "faces": 36
+    },
+    {
+      "index": 14,
+      "step": 7,
+      "title": "Turn over to expose the small point",
+      "start_frame": 1009,
+      "end_frame": 1080,
+      "start": 42.0,
+      "end": 45.0,
+      "faces": 36
+    },
+    {
+      "index": 15,
+      "step": 8,
+      "title": "Fold the small exposed point down",
+      "start_frame": 1081,
+      "end_frame": 1152,
+      "start": 45.0,
+      "end": 48.0,
+      "faces": 46
+    },
+    {
+      "index": 16,
+      "step": 8,
+      "title": "Close the model along its center",
+      "start_frame": 1153,
+      "end_frame": 1224,
+      "start": 48.0,
+      "end": 51.0,
+      "faces": 46
+    },
+    {
+      "index": 17,
+      "step": 9,
+      "title": "Fold the first wing, keeping a body strip",
+      "start_frame": 1225,
+      "end_frame": 1296,
+      "start": 51.0,
+      "end": 54.0,
+      "faces": 56
+    },
+    {
+      "index": 18,
+      "step": 9,
+      "title": "Fold the matching wing on the other side",
+      "start_frame": 1297,
+      "end_frame": 1368,
+      "start": 54.0,
+      "end": 57.0,
+      "faces": 66
+    },
+    {
+      "index": 19,
+      "step": 9,
+      "title": "Open the wings into flying position",
+      "start_frame": 1369,
+      "end_frame": 1440,
+      "start": 57.0,
+      "end": 60.0,
+      "faces": 66
+    },
+    {
+      "index": 20,
+      "step": 10,
+      "title": "Your finished flying bat \u2014 all sides",
+      "start_frame": 1441,
+      "end_frame": 1512,
+      "start": 60.0,
+      "end": 63.0,
+      "faces": 66
+    }
+  ]
+}

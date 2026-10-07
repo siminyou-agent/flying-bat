@@ -1,33 +1,36 @@
 # Flight School · The Flying Bat
 
-An interactive, animated 3D paper-folding tutorial.
+A Blender-rendered, interactive paper-folding tutorial.
 
 **Visit: https://plane.simin.you**
 
 ## Features
 
 - Guided folding steps with original reference photographs.
-- Animated diagrams with play/pause, replay, and drag-to-scrub controls.
-- A real 3D paper viewer: drag to orbit, scroll or pinch to zoom, and use front/side/back camera presets.
-- Moving flaps rotate around crease axes in 3D. Pause midway and inspect from any angle.
-- Layer-separation control for inspection and a 2D fallback view.
-- Separate actions for multi-part folds, highlighted moving flaps, and crease guides.
+- A 63-second Blender studio film, divided into 21 actions.
+- Matte construction-paper material, actual paper thickness, folded layers, softbox lighting, and contact shadows.
+- Per-action play/pause, replay, adjustable speed, and a scrubbable timeline.
+- A rotatable version of the **same Blender model**, exported as animated glTF with thickness baked into its morph targets.
+- Switch from the rendered film to the interactive model without losing your place. Drag to orbit, pinch/scroll to zoom, or choose a camera preset.
+- Downloadable `.blend` source scene, plus procedural modeling and rendering scripts.
 - Enlarged photos with left/right detail views.
 - Read-aloud instructions using browser speech synthesis.
 - Progress saved locally in your browser.
 - Responsive phone and desktop layouts; keyboard navigation.
 
-Animations are simplified motion studies, not a full physical origami simulation. Individual folds use rigid 3D hinge rotation; the authored step models simplify proportions and layer topology. Use the reference photographs for precise proportions and layer placement. Layer separation is an inspection aid, not a physical gap in the paper.
+The model begins with one rectangular sheet. Crease operations subdivide its faces and rotate the selected paper layers, retaining original-sheet coordinates. The generator verifies that every fold preserves the sheet's surface area. Small folds are reconstructed from reference photographs, so this is a teaching reconstruction rather than an exact measured pattern or a collision/elasticity simulation. Refer to the photographs for precise fold placement.
 
 ## Run locally
 
-No build or package installation is needed. Three.js 0.180.0 and OrbitControls are vendored locally under `vendor/` (MIT license in `vendor/THREE-LICENSE.txt`):
+No frontend build is needed. Three.js 0.180.0, OrbitControls, and GLTFLoader are vendored locally under `vendor/` (MIT license in `vendor/THREE-LICENSE.txt`). Use a static server with HTTP Range support so video scrubbing works; for example, with Node.js installed:
 
 ```sh
-python3 -m http.server 8000
+npx --yes serve . --listen 8000
 ```
 
 Open http://localhost:8000. The static site is deployed from the `main` branch root using GitHub Pages. `CNAME` sets the custom domain.
+
+To regenerate the Blender scene, animated model, and video assets, see [the Blender build instructions](blender/README.md).
 
 ## Credits
 

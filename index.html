@@ -7,10 +7,10 @@
   <title>Flight School · The Flying Bat</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🦇%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
-  <script src="animation.js" defer></script>
+  <script src="blender_player.js" defer></script>
   <script src="app.js" defer></script>
   <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
-  <script type="module" src="three_view.js"></script>
+  <script type="module" src="blender_view.js"></script>
 </head>
 <body>
   <header class="topbar"><a class="brand" href="./"><span aria-hidden="true">↗</span> FLIGHT SCHOOL</a><span class="edition">PAPER LAB / NO. 01</span></header>
@@ -23,14 +23,15 @@
         <div class="lesson-top"><span id="phase" class="eyebrow"></span><button id="speak" class="text-button" aria-label="Read this step aloud">♪ Read aloud</button></div>
         <div class="step-heading" aria-live="polite" aria-atomic="true"><p id="number" class="step-number"></p><h2 id="title"></h2><p id="instruction"></p></div>
         <section class="animation-lab" aria-label="Interactive folding animation">
-          <div class="animation-heading"><span class="eyebrow">3D FOLD EXPLORER</span><div class="view-mode" role="group" aria-label="Diagram mode"><button id="mode-3d" aria-pressed="true">3D</button><button id="mode-2d" aria-pressed="false">2D</button></div></div>
+          <div class="animation-heading"><span class="eyebrow">THE BLENDER STUDIO</span><div class="view-mode" role="group" aria-label="Animation view"><button id="mode-film" aria-pressed="true">Film</button><button id="mode-model" aria-pressed="false">Rotate model</button></div></div>
           <div id="action-tabs" role="group" aria-label="Actions in this step"></div>
           <p id="animation-instruction" aria-live="polite"></p>
-          <div id="three-panel"><div class="camera-presets" role="group" aria-label="Camera angle"><button data-camera="angle" aria-pressed="true">↗ Angled</button><button data-camera="front" aria-pressed="false">Front</button><button data-camera="side" aria-pressed="false">Side</button><button data-camera="back" aria-pressed="false">Back</button><button id="reset-camera" aria-label="Reset 3D camera">↺ View</button></div><div id="three-viewport"><p id="three-status" role="status">Loading 3D paper…</p></div><div class="orbit-help">Drag to rotate · Pinch or scroll to zoom · Two fingers to pan</div><div class="layer-control"><label for="layer-spacing">Separate layers <span>for a closer look</span></label><input id="layer-spacing" type="range" min="0" max="100" value="0" aria-label="Paper layer separation"></div></div>
-          <div class="diagram-wrap" id="two-panel" hidden><svg id="fold-diagram" viewBox="0 0 600 430" role="img" aria-labelledby="diagram-title diagram-desc"><title id="diagram-title">Interactive paper fold</title><desc id="diagram-desc">Colored paper layers demonstrate the selected folding action. Drag the progress slider to inspect the fold.</desc><defs><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#cfdbce"/></pattern><filter id="paper-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#1b3929" flood-opacity=".14"/></filter><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#b86d32" stroke-width="1.5"/></marker></defs><rect width="600" height="430" fill="url(#grid)"/><ellipse cx="300" cy="385" rx="150" ry="13" fill="#173e2b" opacity=".05"/><g id="paper-scene" filter="url(#paper-shadow)"></g><g id="fold-guides"></g></svg><span class="diagram-hint">Drag the slider to fold it yourself ↓</span></div>
+          <div id="film-panel"><video id="fold-film" muted playsinline preload="metadata" poster="media/poster.png" aria-label="Blender-rendered folding animation"></video><span class="film-badge">RENDERED IN BLENDER</span><p id="film-status" role="status" hidden></p></div>
+          <div id="three-panel" hidden><div class="camera-presets" role="group" aria-label="Camera angle"><button data-camera="angle" aria-pressed="true">↗ Angled</button><button data-camera="top" aria-pressed="false">Top</button><button data-camera="side" aria-pressed="false">Side</button><button data-camera="back" aria-pressed="false">Back</button><button id="reset-camera" aria-label="Reset 3D camera">↺ View</button></div><div id="three-viewport"><p id="three-status" role="status">Loading the Blender model…</p></div><div class="orbit-help">Drag to rotate · Pinch or scroll to zoom · Same model, same fold</div></div>
           <div class="animation-controls"><button id="play-fold" class="primary">▶ Play fold</button><div class="scrub"><label for="fold-progress">Fold progress <output id="fold-percent" for="fold-progress">0%</output></label><input id="fold-progress" type="range" min="0" max="1000" value="0" aria-label="Fold progress"></div><button id="replay-fold" aria-label="Reset animation">↺</button></div>
-          <div class="animation-bottom"><span><i class="legend-paper"></i> Paper <i class="legend-moving"></i> Moving flap <i class="legend-crease"></i> Crease</span><button id="next-action" class="text-button">Next action →</button></div>
-          <p class="schematic-note">Simplified 3D paper layers show how each fold moves. Layer separation is an inspection aid. Use the original photos below for exact proportions and layer placement.</p>
+          <div class="animation-bottom"><label class="speed-control">Speed <select id="film-speed" aria-label="Playback speed"><option value="0.5">½× Slow</option><option value="0.75" selected>¾× Gentle</option><option value="1">1×</option></select></label><button id="next-action" class="text-button">Next action →</button></div>
+          <div class="studio-links"><button id="watch-film" class="text-button">▶ Watch the whole fold · 63 sec</button><a href="media/flying_bat.blend" download>Download Blender scene ↗</a></div>
+          <p class="schematic-note">Modeled from a single rectangular sheet, with paper thickness, layered folds, and soft studio lighting. Fold positions are reconstructed from the photos; the model is a teaching reconstruction, not a collision simulation.</p>
         </section>
         <figure>
           <div class="photo-tools"><span id="photo-label">REFERENCE PHOTO</span><div id="panels" role="group" aria-label="Photo view"><button data-view="both" aria-pressed="true">Both</button><button data-view="left" aria-pressed="false">Left detail</button><button data-view="right" aria-pressed="false">Right detail</button></div></div>
@@ -46,6 +47,7 @@
     <footer>Adapted from <a href="https://allfortheboys.com/folded-flying-bat/" target="_blank" rel="noopener">Folded Flying Bat by Allison Waken · All for the Boys ↗</a>.<br>Original folding design/tutorial and reference photos credited to the source. Extra folding checks and flight tips added for this guide.<span class="keyboard">Keyboard: ← / → to move between steps.</span></footer>
   </main>
   <dialog id="viewer" aria-label="Enlarged reference photo"><div class="viewer-top"><p id="viewer-title"></p><button id="close-viewer" autofocus>Close ✕</button></div><p class="viewer-hint">Pinch to zoom on your phone, or scroll to inspect the full photo.</p><div class="viewer-image"><img id="large-image" alt=""></div></dialog>
+  <dialog id="film-viewer" aria-label="Complete Blender folding animation"><div class="viewer-top"><p>The whole fold · Blender studio</p><button id="close-film">Close ✕</button></div><video id="full-film" controls playsinline preload="none" poster="media/poster.png"><track kind="captions" src="media/full-fold.vtt" srclang="en" label="Folding actions" default></video><p class="viewer-hint">Pause or drag the video's timeline to inspect any moment. Return to the step-by-step guide to rotate the model.</p></dialog>
   <noscript>This guide needs JavaScript for step navigation. <a href="https://allfortheboys.com/folded-flying-bat/">Open the original photo tutorial.</a></noscript>
 </body>
 </html>
