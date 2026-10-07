@@ -38,7 +38,7 @@ window.BatAnimation = (() => {
     [action('1 · First wing','Fold one wing down while leaving a narrow strip of body to hold.',[face(half)],[flap([[320,210],[355,150],[445,260],[400,335],[320,335]],[[320,210],[275,185],[170,265],[210,335],[320,335]])],[[320,210],[320,335]]),
      action('2 · Turn over','Turn the model over to reach the second wing.',[face(half),face([[320,210],[275,185],[170,265],[210,335],[320,335]],colors.back)],[],null,{flip:true,reverse:[face([[320,210],[275,185],[170,265],[210,335],[320,335]],colors.back),face(half)]}),
      action('3 · Other wing','Repeat the same wing fold on the other side.',[face(half),face([[320,210],[275,185],[170,265],[210,335],[320,335]],colors.back)],[flap([[320,210],[355,150],[445,260],[400,335],[320,335]],[[320,210],[275,185],[170,265],[210,335],[320,335]])],[[320,210],[320,335]]),
-     action('4 · Open wings','Gently spread both wings into a balanced flying position.',[face([[290,195],[310,195],[310,320],[290,320]])],[flap([[290,195],[270,150],[255,205],[270,300],[290,320]],[[290,195],[180,145],[130,205],[245,290],[290,320]]),flap([[310,195],[330,150],[345,205],[330,300],[310,320]],[[310,195],[420,145],[470,205],[355,290],[310,320]])],null)],
+     action('4 · Open wings','Gently spread both wings into a balanced flying position.',[face([[290,195],[310,195],[310,320],[290,320]])],[flap([[290,195],[270,150],[255,205],[270,300],[290,320]],[[290,195],[180,145],[130,205],[245,290],[290,320]]),flap([[310,195],[330,150],[345,205],[330,300],[310,320]],[[310,195],[420,145],[470,205],[355,290],[310,320]])],null,{openWings:true})],
     [action('Gentle glide','Hold the center body and toss gently forward. Balanced wings make the difference.',[face(bat),face([[300,195],[320,240],[300,285],[280,240]],colors.back)],[],null,{fly:true})]
   ];
   let step=0,index=0,progress=0,playing=false,frame=0,last=0;
@@ -63,6 +63,8 @@ window.BatAnimation = (() => {
     if(a.moving.length&&t<.97){const f=a.moving[0];let best=0;f.from.forEach((p,i)=>{if(Math.hypot(p[0]-f.to[i][0],p[1]-f.to[i][1])>Math.hypot(f.from[best][0]-f.to[best][0],f.from[best][1]-f.to[best][1]))best=i;});const p=f.from[best],q=f.to[best];svg('path',{d:`M${p[0]} ${p[1]} Q${(p[0]+q[0])/2} ${Math.min(p[1],q[1])-65} ${q[0]} ${q[1]}`,fill:'none',stroke:'#b86d32','stroke-width':2.5,'stroke-dasharray':'5 5','marker-end':'url(#arrowhead)',opacity:.8},guides);}
     $('fold-progress').value=Math.round(t*1000);$('fold-percent').textContent=`${Math.round(t*100)}%`;
     $('fold-progress').setAttribute('aria-valuetext',`${Math.round(t*100)} percent folded`);
+    window.batFoldFrame={action:a,progress:t,key:`${step}:${index}`};
+    window.dispatchEvent(new CustomEvent('bat-fold-frame',{detail:window.batFoldFrame}));
   }
   function stop(){playing=false;cancelAnimationFrame(frame);$('play-fold').textContent=progress>=1?'↺ Replay fold':'▶ Play fold';}
   function tick(now){if(!playing)return;if(!last)last=now;progress=Math.min(1,progress+(now-last)/2600);last=now;draw();if(progress>=1){stop();return;}frame=requestAnimationFrame(tick);}

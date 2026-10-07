@@ -1,6 +1,6 @@
 # Flight School · The Flying Bat
 
-An interactive, animated paper-folding tutorial.
+An interactive, animated 3D paper-folding tutorial.
 
 **Visit: https://plane.simin.you**
 
@@ -8,17 +8,20 @@ An interactive, animated paper-folding tutorial.
 
 - Guided folding steps with original reference photographs.
 - Animated diagrams with play/pause, replay, and drag-to-scrub controls.
+- A real 3D paper viewer: drag to orbit, scroll or pinch to zoom, and use front/side/back camera presets.
+- Moving flaps rotate around crease axes in 3D. Pause midway and inspect from any angle.
+- Layer-separation control for inspection and a 2D fallback view.
 - Separate actions for multi-part folds, highlighted moving flaps, and crease guides.
 - Enlarged photos with left/right detail views.
 - Read-aloud instructions using browser speech synthesis.
 - Progress saved locally in your browser.
 - Responsive phone and desktop layouts; keyboard navigation.
 
-Animations are simplified motion studies, not a physical origami simulation. Use the reference photographs for precise proportions and layer placement.
+Animations are simplified motion studies, not a full physical origami simulation. Individual folds use rigid 3D hinge rotation; the authored step models simplify proportions and layer topology. Use the reference photographs for precise proportions and layer placement. Layer separation is an inspection aid, not a physical gap in the paper.
 
 ## Run locally
 
-No build tools or dependencies are needed:
+No build or package installation is needed. Three.js 0.180.0 and OrbitControls are vendored locally under `vendor/` (MIT license in `vendor/THREE-LICENSE.txt`):
 
 ```sh
 python3 -m http.server 8000
